@@ -33,11 +33,27 @@ export function Home() {
 
   function handleMarkTaskAsDone(id: number) {
     //TODO - mark task as done if exists
+    let tarefas: Task[] = [];
+
+    tasks.map((item) => {
+      if (item.id === id && item.done === false) {
+        item.done = true;
+        tarefas.push(item);
+      } else {
+        item.done = false;
+        tarefas.push(item);
+      }
+    });
+
+    //console.log(JSON.stringify(tarefas));
+
+
+    setTasks(tarefas);
   }
 
   function handleRemoveTask(id: number) {
     //TODO - remove task from state
-    setTasks((oldState) => oldState.filter((skill) => skill.id !== id))
+    setTasks((oldState) => oldState.filter((task) => task.id !== id))
   }
 
   return (
